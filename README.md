@@ -1,2 +1,2 @@
 # VDM
-Vértice Digital - Project Manager
+Vértice Digital - Project Manager.

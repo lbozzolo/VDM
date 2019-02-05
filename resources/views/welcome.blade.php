@@ -71,24 +71,26 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('login') }}">Iniciar sesión</a>
+                        <a href="{{ route('register') }}">Registrarse</a>
                     @endauth
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                {{--<img src="{{ asset('staradmin/images/logo_icon.png') }}" width="400px" alt="profile image">--}}
+                <img src="{{ asset('staradmin/images/vertice_logo.jpg') }}" alt="profile image">
+                <div class=" m-b-md" style="font-size: 2em">
+                    VDM (Vértice Digital Manager)
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                {{--<div class="links">--}}
+                    {{--<a href="https://laravel.com/docs">Documentation</a>--}}
+                    {{--<a href="https://laracasts.com">Laracasts</a>--}}
+                    {{--<a href="https://laravel-news.com">News</a>--}}
+                    {{--<a href="https://forge.laravel.com">Forge</a>--}}
+                    {{--<a href="https://github.com/laravel/laravel">GitHub</a>--}}
+                {{--</div>--}}
             </div>
         </div>
     </body>

@@ -18,6 +18,7 @@ class CreateCustomersTable extends Migration
 
             $table->string('name');
             $table->string('last_name');
+            $table->string('username');
             $table->string('head');
             $table->string('email');
             $table->string('url');

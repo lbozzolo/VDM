@@ -17,18 +17,20 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
 
             $table->string('title');
-            $table->string('description');
-            $table->integer('fee');
-            $table->string('period');
-            $table->dateTime('deadline');
-            $table->text('remarks');
-            $table->integer('phase_id')->unsigned();
+            $table->string('description')->nullable();
+            $table->integer('fee')->nullable();
+            $table->string('period')->nullable();
+            $table->dateTime('deadline')->nullable();
+            $table->text('remarks')->nullable();
+            $table->integer('phase_id')->nullable()->unsigned();
             $table->integer('customer_id')->unsigned();
+            $table->integer('owner_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
             $table->index('id');
             $table->index('phase_id');
             $table->index('customer_id');
+            $table->index('owner_id');
             $table->index('user_id');
 
             $table->timestamps();

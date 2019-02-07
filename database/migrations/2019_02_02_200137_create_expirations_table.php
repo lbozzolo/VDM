@@ -18,10 +18,10 @@ class CreateExpirationsTable extends Migration
 
             $table->integer('customer_id')->unsigned();
             $table->integer('project_id')->unsigned();
-            $table->string('fee');
-            $table->dateTime('payment_date');
-            $table->dateTime('expiration_alert');
-            $table->text('remarks');
+            $table->string('fee')->nullable();
+            $table->dateTime('payment_date')->nullable();
+            $table->text('expiration_alert')->nullable();
+            $table->text('remarks')->nullable();
 
             $table->index('id');
 

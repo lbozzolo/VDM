@@ -18,6 +18,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('selectize/dist/css/selectize.css') }}" />
 
 <link href="{{ asset('/datepicker/datepicker3.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('/css/styles.css') }}" rel="stylesheet" type="text/css" />
 
 <script
         src="https://code.jquery.com/jquery-2.2.4.min.js"

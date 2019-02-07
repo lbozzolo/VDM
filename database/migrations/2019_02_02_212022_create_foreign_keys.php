@@ -24,6 +24,11 @@ class CreateForeignKeys extends Migration
                 ->on('customers')
                 ->onUpdate('NO ACTION')
                 ->onDelete('NO ACTION');
+            $table->foreign('owner_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('NO ACTION')
+                ->onDelete('NO ACTION');
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
@@ -135,6 +140,23 @@ class CreateForeignKeys extends Migration
                 ->onDelete('NO ACTION');
         });
         Schema::table('budgets', function(Blueprint $table){
+            $table->foreign('project_id')
+                ->references('id')
+                ->on('projects')
+                ->onUpdate('NO ACTION')
+                ->onDelete('NO ACTION');
+            $table->foreign('state_id')
+                ->references('id')
+                ->on('states_budgets')
+                ->onUpdate('NO ACTION')
+                ->onDelete('NO ACTION');
+        });
+        Schema::table('contacts_projects', function(Blueprint $table){
+            $table->foreign('contact_id')
+                ->references('id')
+                ->on('contacts')
+                ->onUpdate('NO ACTION')
+                ->onDelete('NO ACTION');
             $table->foreign('project_id')
                 ->references('id')
                 ->on('projects')

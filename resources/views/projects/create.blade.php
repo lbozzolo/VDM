@@ -7,28 +7,28 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h2 class="display-4">Proyectos</h2>
+                    <h2 class="display-4">Proyecto nuevo</h2>
                     <h4 class="card-title">Crear un nuevo proyecto</h4>
                     {{--<p class="card-description">--}}
                         {{--Basic form elements--}}
                     {{--</p>--}}
-                    <form class="forms-sample">
+                        {!! Form::open(['url' => route('projects.store'), 'method' => 'post']) !!}
                         <div class="form-group">
-                            <label for="exampleInputName1">Título <span class="text-danger">*</span> </label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Mi primer proyecto">
+                            <label for="title">Título <span class="text-danger">*</span> </label>
+                            {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Mi primer proyecto']) !!}
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputEmail3">
+                            <label for="description">
                                 Descripción <small style="color: gray">(opcional)</small>
                             </label>
-                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Sistema de gestión de contenidos">
+                            {!! Form::text('description', null, ['class' => 'form-control', 'placeholder' => 'Sistema de gestión de contenidos']) !!}
                         </div>
 
                         <div class="row">
                             <div class="form-group col-lg-6">
-                                <label for="exampleInputName1">Propietario</label>
-                                {!! Form::select('user_id', $users, Auth::user()->id, ['class' => 'selectize']) !!}
+                                <label for="exampleInputName1">Responsable</label>
+                                {!! Form::select('owner_id', $users, Auth::user()->id, ['class' => 'selectize']) !!}
                             </div>
                             <div class="form-group col-lg-6">
                                 <label for="exampleInputName1">Cliente</label>
@@ -41,7 +41,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="exampleInputName1">Fase del proyecto</label><br>
-                                    {!! Form::select('customer_id', $phases, null, ['class' => 'selectize']) !!}
+                                    {!! Form::select('phase_id', $phases, null, ['class' => 'selectize']) !!}
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('period', 'Plazo de entrega') !!}
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="form-group">
                                     {!! Form::label('deadline', 'Fecha de entrega') !!}
-                                    {!! Form::text('deadline', null, ['class' => 'form-control datepicker', 'style' => 'cursor: default']) !!}
+                                    {!! Form::text('deadline', null, ['class' => 'form-control datepicker', 'style' => 'cursor: default', 'autocomplete' => 'off']) !!}
                                 </div>
                             </div>
                             <div class="form-group col-lg-6">
@@ -63,9 +63,8 @@
                             {{--{!! Form::textarea('remarks', null, ['class' => 'form-control', 'rows' => '4']) !!}--}}
                         {{--</div>--}}
                         <button type="submit" class="btn btn-primary mr-2">Crear proyecto</button>
-                        <button class="btn btn-light">Cancelar</button>
-                    </form>
-
+                        <a href="{{ route('projects.index') }}" class="btn btn-secondary">Cancelar</a>
+                        {!! Form::close() !!}
                 </div>
             </div>
         </div>

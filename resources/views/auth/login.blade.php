@@ -2,7 +2,9 @@
 
 @section('body')
 
+
 <div class="container-scroller">
+
     <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
         <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
             <div class="row w-100">
@@ -48,11 +50,11 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <img src="{{ asset('staradmin/images/vertice_logo.png') }}" alt="logo" style="width: 100px; float: right" />
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        Login
+                                        Ingresar
                                     </button>
 
                                     <a class="btn btn-link" href="{{ route('password.request') }}">

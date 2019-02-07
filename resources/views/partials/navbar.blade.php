@@ -161,7 +161,7 @@
                     @else
 
                         <a  class="dropdown-item mt-2" href="#" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                            Mi perfil<span class="caret"></span>
+                            <i class="mdi mdi-account-box"></i> Mi perfil<span class="caret"></span>
                         </a>
                         <a  class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();

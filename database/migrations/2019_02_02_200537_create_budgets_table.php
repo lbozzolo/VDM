@@ -20,9 +20,11 @@ class CreateBudgetsTable extends Migration
             $table->string('payment_method');
             $table->string('model_file');
             $table->integer('project_id')->unsigned();
+            $table->integer('state_id')->unsigned()->nullable();
 
             $table->index('id');
             $table->index('project_id');
+            $table->index('state_id');
 
             $table->timestamps();
         });

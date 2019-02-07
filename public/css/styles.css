@@ -1,0 +1,40 @@
+.button-action {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+
+.fase {
+    color: white;
+    padding: 5px 10px;
+}
+
+.fase-analisis {
+    background-color: #eba100;
+}
+
+.fase-presupuesto {
+    background-color: #795da3;
+}
+
+.fase-desarrollo {
+    background-color: #4f81d4 ;
+}
+
+.fase-testing {
+    background-color: #edde34;
+}
+
+.fase-capacitacion {
+    background-color: sienna;
+}
+
+.fase-produccion {
+    background-color: #0d6632;
+}
+
+.non-styled-button {
+    margin: 0px;
+    padding: 0px;
+    background-color: transparent;
+    border: none;
+}

@@ -12,6 +12,19 @@ class Budget extends Model
      * @var array
      */
     protected $fillable = [
-        'fee', 'payment_method', 'model_file', 'project_id',
+        'fee', 'payment_method', 'model_file', 'project_id', 'state_id',
     ];
+
+    // Relationships
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
+    public function state()
+    {
+        return $this->belongsTo(StateBudget::class);
+    }
+
 }

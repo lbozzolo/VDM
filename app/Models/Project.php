@@ -22,6 +22,11 @@ class Project extends Model
         return Carbon::parse($this->deadline)->format('d/m/Y');
     }
 
+    public function getCreatedDateAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('d/m/Y');
+    }
+
     public function feeApprovedBudget()
     {
         $approved = $this->budgets->filter(function ($item) {

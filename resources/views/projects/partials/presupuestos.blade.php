@@ -4,7 +4,7 @@
         <div id="budget-list">
             <table class="table table-sm">
                 @if($project->budgets->count())
-                    <caption class="text-muted">Sólo puede haber un presupuesto aprobado por proyecto.</caption>
+                    <caption class="text-muted"><small>Sólo puede haber un ( 1 ) presupuesto aprobado por proyecto.</small></caption>
                     <thead>
                         <tr>
                             <th>Presupuesto</th>
@@ -71,7 +71,7 @@
                                             <p class="lead text-primary"> {!! $budget->model_file !!}</p>
                                         </div>
                                         <div class="modal-footer">
-                                            {!! Form::open(['url' => route('expirations.destroy'), 'method' => 'delete']) !!}
+                                            {!! Form::open(['url' => route('budgets.destroy'), 'method' => 'delete']) !!}
 
                                             {!! Form::hidden('budget_id', $budget->id) !!}
                                             <button title="Eliminar" type="submit" class="btn btn-sm btn-danger">Eliminar</button>

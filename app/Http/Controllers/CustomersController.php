@@ -77,7 +77,7 @@ class CustomersController extends Controller
         if(!$data['customer'])
             return redirect()->back()->withErrors('No se pudo encontrar el cliente');
 
-        return view('customers.create')->with($data);
+        return view('customers.edit')->with($data);
     }
 
     public function update(Request $request, $id)
@@ -87,9 +87,21 @@ class CustomersController extends Controller
         if(!$data['customer'])
             return redirect()->back()->withErrors('No se pudo encontrar el cliente');
 
-        // Edición de modelo
+        $data['customer']->name =  $request->name;
+        $data['customer']->last_name = $request->last_name;
+        $data['customer']->username = $request->username;
+        $data['customer']->head = $request->head;
+        $data['customer']->email = $request->email;
+        $data['customer']->url = $request->url;
+        $data['customer']->address = $request->address;
+        $data['customer']->phone = $request->phone;
+        $data['customer']->cuit = $request->cuit;
+        $data['customer']->cuil = $request->cuil;
+        $data['customer']->remarks = $request->remarks;
 
-        return view('customers.show', $data['customer']->id)->with('ok', 'Cliente editado con éxito');
+        $data['customer']->save();
+
+        return redirect()->route('customers.index')->with('ok', 'Cliente editado con éxito');
     }
 
     public function destroy(Request $request)

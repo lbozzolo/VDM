@@ -14,6 +14,7 @@
                             <th>Vencimiento</th>
                             <th>Próximo venc.</th>
                             <th>Concepto</th>
+                            <th>Eliminar</th>
                         </tr>
                         </thead>
                     @endif
@@ -24,6 +25,36 @@
                             <td>{!! $expiration->nextExpiration() !!}</td>
                             {{--<td>{!! ($expiration->expiration_alert)? $expiration->expiration_alert : '-' !!}</td>--}}
                             <td>{!! $expiration->remarks !!}</td>
+                            <td>
+                                <button title="Eliminar" type="button" data-toggle="modal" data-target="#eliminar{!! $expiration->id !!}" class="btn btn-xs btn-danger">
+                                    <i class="mdi mdi-delete"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="eliminar{!! $expiration->id !!}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" ><i class="mdi mdi-alert-circle text-danger"></i> Eliminar vencimiento</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>¿Desea eliminar este vencimiento?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                {!! Form::open(['url' => route('expirations.destroy'), 'method' => 'delete']) !!}
+
+                                                {!! Form::hidden('expiration_id', $expiration->id) !!}
+                                                <button title="Eliminar" type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+                                                {!! Form::close() !!}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
 
                     @empty

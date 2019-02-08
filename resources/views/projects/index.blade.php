@@ -25,7 +25,6 @@
                                             @foreach($project->images as $image)
                                                 @if($image->main == 1)
                                                     <img class="img-sm rounded-circle mb-4 mb-md-0" src="{{ route('images.see', $image->path) }}" >
-
                                                 @endif
                                             @endforeach
                                         @else
@@ -48,8 +47,7 @@
                                             </div>
                                             <div class="col-4 d-flex">
                                                 <small class="Last-responded mr-2 mb-0 text-muted text-muted">
-                                                    <i class="mdi mdi-account"></i>
-                                                    {!! $project->owner->fullname !!}</small>
+                                                    <i class="mdi mdi-account"></i>{!! $project->owner->fullname !!}</small>
                                             </div>
                                         </div>
                                     </div>

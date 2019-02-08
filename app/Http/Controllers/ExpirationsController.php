@@ -58,14 +58,14 @@ class ExpirationsController extends Controller
 
     public function destroy(Request $request)
     {
-        $budget = Budget::find($request->budget_id);
+        $expiration = Expiration::find($request->expiration_id);
 
-        if(!$budget)
-            return redirect()->back()->withErrors('No se pudo eliminar el presupuesto');
+        if(!$expiration)
+            return redirect()->back()->withErrors('No se pudo eliminar el vencimiento');
 
-        $budget->delete();
+        $expiration->delete();
 
-        return redirect()->back()->with('ok', 'Presupuesto eliminado con éxito');
+        return redirect()->back()->with('ok', 'Vencimiento eliminado con éxito');
     }
 
 }

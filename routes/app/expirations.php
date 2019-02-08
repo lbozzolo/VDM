@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'expirations'], function () {
+Route::group(['prefix' => 'vencimientos'], function () {
 
     Route::post('/nuevo', [
         'as' => 'expirations.store',

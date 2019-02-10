@@ -26,3 +26,8 @@
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sifter/0.5.3/sifter.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microplugin/0.0.3/microplugin.js"></script>
+
+<link rel="stylesheet" href="{{ asset('croppie/croppie.css') }}" />
+
+
+

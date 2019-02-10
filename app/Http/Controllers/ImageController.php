@@ -7,6 +7,8 @@ use Vdm\Models\Project;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Vdm\Models\Image;
+use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image as Img;
 
 class ImageController extends Controller
 {
@@ -35,12 +37,24 @@ class ImageController extends Controller
         $project = Project::find($id);
 
         if($request->file('img')){
-            $file = $request->file('img');
-            $nombre = $file->getClientOriginalName();
-            Storage::disk('local')->put($nombre,  File::get($file));
+
+            // returns Intervention\Image\Image
+            $resize = Img::make($request->file('img'))->fit(300)->encode('jpg');
+
+            // calculate md5 hash of encoded image
+            $hash = md5($resize->__toString());
+
+            // use hash as a name
+            $path = "{$hash}.jpg";
+
+            // save it locally to ~/public/images/{$hash}.jpg
+            $resize->save(storage_path('app/images/'.$path));
+
+            // $url = "/images/{$hash}.jpg"
+            $url = "/" . $path;
 
             $imagen = new \Vdm\Models\Image([
-                'path' => $nombre,
+                'path' => $path,
                 'main' => 0
             ]);
             $project->images()->save($imagen);
@@ -51,8 +65,9 @@ class ImageController extends Controller
 
     public function seeImage($file)
     {
-        return response()->make(\Illuminate\Support\Facades\File::get(storage_path("app/".$file)),200)
-            ->header('Content-Type', 'image/jpg');
+        return Img::make(storage_path('app/images/'.$file))->response();
+//        return response()->make(\Illuminate\Support\Facades\File::get(storage_path("app/images/".$file)),200)
+//            ->header('Content-Type', 'image/jpg');
     }
 
     public function main($id, $model, $modelId)
@@ -76,9 +91,59 @@ class ImageController extends Controller
     public function deleteImage($id)
     {
         $image = Image::find($id);
+        $path = $image->path;
         $image->delete();
 
+        unlink(storage_path('app/images/'.$path));
+
         return redirect()->back()->with('ok', 'Imagen eliminada con éxito');
+    }
+
+
+    // Croppie
+
+    public function saveJqueryImageUpload(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'profile_picture' => 'required|image|max:1000',
+        ]);
+
+        if ($validator->fails()) {
+
+            return $validator->errors();
+        }
+
+        $status = "";
+
+        if ($request->hasFile('profile_picture')) {
+
+            $project = Project::find($id);
+
+            // returns Intervention\Image\Image
+            $resize = Img::make($request->file('profile_picture'))->fit(300)->encode('jpg');
+
+            // calculate md5 hash of encoded image
+            $hash = md5($resize->__toString());
+
+            // use hash as a name
+            $path = "{$hash}.jpg";
+
+            // save it locally to ~/public/images/{$hash}.jpg
+            $resize->save(storage_path('app/images/'.$path));
+
+            // $url = "/images/{$hash}.jpg"
+            $url = "/" . $path;
+
+            $imagen = new \Vdm\Models\Image([
+                'path' => $path,
+                'main' => 0
+            ]);
+            $project->images()->save($imagen);
+
+            $status = "uploaded";
+        }
+
+        return response($status,200);
     }
 
 

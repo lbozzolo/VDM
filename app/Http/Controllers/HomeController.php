@@ -3,6 +3,7 @@
 namespace Vdm\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Vdm\Models\Project;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $data['project'] = Project::find(1);
+        return view('index')->with($data);
     }
 }

@@ -20,6 +20,7 @@
                                 <table class="table ">
                                     <thead>
                                     <tr>
+                                        <th></th>
                                         <th>Proyecto</th>
                                         <th>Cliente</th>
                                         <th>Fecha límite</th>
@@ -32,6 +33,17 @@
                                     <tbody>
                                     @forelse($projects as $project)
                                         <tr>
+                                            <td>
+                                                @if($project->images->count())
+                                                    @foreach($project->images as $image)
+                                                        @if($image->main == 1)
+                                                            <img class="img-sm rounded-circle " style="border: 1px solid lightgrey" src="{{ route('images.see', $image->path) }}" >
+                                                        @endif
+                                                    @endforeach
+                                                @else
+                                                    <img class="img-sm rounded-circle mb-4 mb-md-0" src="{{ asset('img/project-img-default.png') }}" alt="profile image">
+                                                @endif
+                                            </td>
                                             <td>
                                                 <span>{!! $project->title !!}</span><br>
                                                 <small class="text-muted mt-2" style="display: inline-block">{!! $project->description !!}</small>

@@ -28,3 +28,8 @@ Route::group(['prefix' => 'images'], function () {
     ]);
 
 });
+
+Route::post('/{id}/demos/jquery-image-upload', [
+    'as' => 'subir.imagen',
+    'uses' => 'ImageController@saveJqueryImageUpload'
+]);

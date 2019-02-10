@@ -17,5 +17,9 @@
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
         "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "croppie": "^2.6.3",
+        "exif-js": "^2.3.0"
     }
 }

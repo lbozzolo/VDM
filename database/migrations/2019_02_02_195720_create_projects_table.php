@@ -33,6 +33,7 @@ class CreateProjectsTable extends Migration
             $table->index('owner_id');
             $table->index('user_id');
 
+            $table->softDeletes();
             $table->timestamps();
         });
     }

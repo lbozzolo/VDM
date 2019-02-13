@@ -19,18 +19,17 @@
                 <span id="project-id" data-project-id="{!! route('subir.imagen', $project->id) !!}"></span>
 
                 <meta name="csrf-token" content="{{ csrf_token() }}">
-                <div class="d-flex justify-content-center p-3">
+
+                <div class="d-flex p-3">
                     <div class="card text-center">
                         <div class="card-body">
-                            {{--<h5 class="card-title">Imagen para subir</h5>--}}
                             <div class="profile-img p-3">
                                 <img src="" id="profile-pic">
                             </div>
                             <div >
-                                <input type="file" class="file-upload form-control" id="file-upload"
-                                       name="profile_picture" accept="image/*">
-
+                                <input type="file" class="file-upload form-control" id="file-upload" name="profile_picture" accept="image/*">
                             </div>
+                            <a href="{{ route('projects.images', $project->id) }}" class="btn btn-primary" id="accept-image" style="display: none">Aceptar</a>
                         </div>
                     </div>
                 </div>

@@ -26,7 +26,7 @@
                     </div>
 
                     <h4>Presupuestos</h4>
-                    <button type="button" id="add-budget-button" class="btn btn-sm btn-outline-primary mt-3">+ Agregar presupuesto</button>
+                    <button type="button" id="add-budget-button" class="btn btn-sm btn-outline-primary mt-3">Agregar presupuesto<i class="mdi mdi-plus"></i></button>
 
                     @include('projects.partials.presupuestos')
 

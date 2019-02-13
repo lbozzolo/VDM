@@ -9,7 +9,7 @@
                 <div class="card-body">
 
                     <h2 class="display-4">Clientes</h2>
-                    <a href="{{ route('customers.create') }}" class="btn btn-success btn-sm" >Nuevo cliente<i class="mdi mdi-plus"></i></a>
+                    <a href="{{ route('customers.create') }}" class="btn btn-sm btn-outline-primary mt-3" >Agregar cliente<i class="mdi mdi-plus"></i></a>
 
                     <div class="table-responsive mt-5">
                         <table class="table table-striped">

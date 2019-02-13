@@ -42,10 +42,10 @@ Route::group(['prefix' => 'proyectos'], function () {
         'uses' => 'ProjectsController@update',
     ]);
 
-    Route::post('/{id}/nuevo-presupuesto', [
-        'as' => 'projects.store.budget',
-        'uses' => 'ProjectsController@storeBudget',
-    ]);
+//    Route::post('/{id}/nuevo-presupuesto', [
+//        'as' => 'projects.store.budget',
+//        'uses' => 'ProjectsController@storeBudget',
+//    ]);
 
     Route::get('ver-pdf/{file}', [
         'as' => 'projects.seepdf',

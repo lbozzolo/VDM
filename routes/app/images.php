@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'images'], function () {
+Route::group(['prefix' => 'imagenes'], function () {
 
     Route::get('/listado', [
         'as' => 'images.index',

@@ -16,13 +16,25 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name');
-            $table->string('fee');
-            $table->string('ip');
-            $table->string('username');
-            $table->string('password');
-            $table->string('port');
-            $table->integer('supplier_id')->unsigned();
+            $table->string('name')->nullable();
+            $table->string('fee')->nullable();
+            $table->string('ip_address')->nullable();
+            $table->string('ip_class')->nullable();
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
+            $table->string('port')->nullable();
+            $table->string('processor')->nullable();
+            $table->string('ram')->nullable();
+            $table->string('storage')->nullable();
+            $table->string('connectivity')->nullable();
+            $table->string('direct_admin')->nullable();
+            $table->string('backbone_shared')->nullable();
+            $table->string('so')->nullable();
+            $table->string('additional_bandwidth')->nullable();
+            $table->string('admin_access')->nullable();
+            $table->string('storage_backup')->nullable();
+            $table->string('type')->nullable();
+            $table->integer('supplier_id')->unsigned()->nullable();
 
             $table->index('id');
             $table->index('supplier_id');

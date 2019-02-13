@@ -72,7 +72,7 @@
                     var blob = new Blob([buffer], { type: type });
 
                     return blob;
-                }
+                };
 
                 $.getImage = function(input, croppie) {
                     if (input.files && input.files[0]) {
@@ -134,6 +134,8 @@
                             success: function(data) {
                                 if (data == "uploaded") {
                                     $("#profile-pic").attr("src", base64);
+                                    $("#accept-image").show();
+                                    $("#file-upload").hide();
                                 } else {
                                     //$("#profile-pic").attr("src","/images/icon-cam.png");
                                     console.log(data['profile_picture']);

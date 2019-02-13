@@ -8,14 +8,15 @@
             <div class="card">
                 <div class="card-body">
                     <h2 class="display-4">Proyectos</h2>
+                    @if($projects->count())
                     <span style="float: right" title="Tabla"><a href="{{ route('projects.index.table') }}"><i class="mdi mdi-table"></i> </a></span>
                     <span style="float: right" title="Lista"><i class="mdi mdi-view-list text-muted"></i></span>
-                    <a href="{{ route('projects.create') }}" class="btn btn-success btn-sm" >Nuevo Proyecto<i class="mdi mdi-plus"></i></a>
+                    @endif
+                    <a href="{{ route('projects.create') }}" class="btn btn-sm btn-outline-primary mt-3" >Agregar Proyecto<i class="mdi mdi-plus"></i></a>
 
                     <div class="card">
                         <div class="card-body">
 
-                            <h5 class="card-title mb-4">Administrar proyectos</h5>
                             <div class="fluid-container">
 
                                 @forelse($projects as $project)

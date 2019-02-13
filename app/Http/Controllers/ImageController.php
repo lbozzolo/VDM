@@ -2,6 +2,7 @@
 
 namespace Vdm\Http\Controllers;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 use Vdm\Models\Project;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,8 @@ use Intervention\Image\Facades\Image as Img;
 
 class ImageController extends Controller
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
     /**
      * Create a new controller instance.
      *
@@ -91,12 +94,14 @@ class ImageController extends Controller
     public function deleteImage($id)
     {
         $image = Image::find($id);
+        $projectId = $image->imageable_id;
+
         $path = $image->path;
         $image->delete();
 
         unlink(storage_path('app/images/'.$path));
 
-        return redirect()->back()->with('ok', 'Imagen eliminada con éxito');
+        return redirect()->route('projects.images', $projectId)->with('ok', 'Imagen eliminada con éxito');
     }
 
 

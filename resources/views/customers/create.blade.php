@@ -8,8 +8,13 @@
             <div class="card">
                 <div class="card-body">
 
+                    @if(!isset($primerCliente))
                     <h2 class="display-4">Cliente nuevo</h2>
                     <h4 class="card-title">Crear un nuevo cliente</h4>
+                    @else
+                        <h2 class="display-4">¿Desea crear un nuevo cliente?</h2>
+                        <h4 class="card-title">Todavía no hay ningún cliente ingresado en el sistema. Ingrese el primero</h4>
+                    @endif
 
                     {!! Form::open(['url' => route('customers.store'), 'method' => 'post']) !!}
 

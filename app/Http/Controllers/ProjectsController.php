@@ -54,6 +54,10 @@ class ProjectsController extends Controller
         $data['customers'] = Customer::all()->pluck('fullname_username', 'id');
         $data['phases'] = Phase::all()->pluck('name', 'id');
 
+
+        if(!$data['customers']->count())
+            return view('customers.create')->with(['info' => 'No se puede crear un proyecto porque todavía no hay ningún cliente cargado. Ingrese un cliente y luego proceda a crear el proyecto', 'primerCliente' => true]);
+
         return view('projects.create')->with($data);
     }
 
@@ -77,7 +81,7 @@ class ProjectsController extends Controller
         if(!$data['project'])
             return redirect()->back()->withErrors('No se pudo crear el proyecto');
 
-        return redirect()->route('projects.edit', $data['project']->id)->with('info', 'Proyecto creado con éxito. ¿Desea agregar un presupuesto?');
+        return redirect()->route('projects.budgets', $data['project']->id)->with('info', 'Proyecto creado con éxito. ¿Desea agregar un presupuesto?');
     }
 
     public function show($id)
@@ -164,10 +168,13 @@ class ProjectsController extends Controller
         $budgets = $project->budgets;
 
         foreach($budgets as $budget){
-            if($budget->state->slug == 'aprobado' && $request->state_id == $aprobado->id){
-                $budget->state_id = $rejected->id;
-                $budget->save();
+            if($budget->state){
+                if($budget->state->slug == 'aprobado' && $request->state_id == $aprobado->id){
+                    $budget->state_id = $rejected->id;
+                    $budget->save();
+                }
             }
+
         }
 
         $data['budget'] = Budget::find($id);

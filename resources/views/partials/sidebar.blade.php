@@ -22,12 +22,6 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
-                <i class="menu-icon mdi mdi-book-open"></i>
-                <span class="menu-title">Presupuestos</span>
-            </a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#proyectos" aria-expanded="false" aria-controls="ui-basic">
                 <i class="menu-icon mdi mdi-content-copy"></i>
                 <span class="menu-title">Proyectos</span>
@@ -46,6 +40,12 @@
                     </li>
                 </ul>
             </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('budgets.index') }}">
+                <i class="menu-icon mdi mdi-book-open"></i>
+                <span class="menu-title">Presupuestos</span>
+            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('customers.index') }}">
@@ -95,9 +95,15 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="{{ route('suppliers.index') }}">
                 <i class="menu-icon mdi mdi-cube-outline"></i>
                 <span class="menu-title">Proveedores</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('products.index') }}">
+                <i class="menu-icon mdi mdi-professional-hexagon"></i>
+                <span class="menu-title">Productos</span>
             </a>
         </li>
         <li class="nav-item">

@@ -10,6 +10,7 @@
                             <th>Presupuesto</th>
                             <th>Importe</th>
                             <th>Forma de pago</th>
+                            <th>Fecha</th>
                             <th>Cambiar estado</th>
                             <th class="text-left">Eliminar</th>
                         </tr>
@@ -17,12 +18,9 @@
                 @endif
                 <tbody>
                 @forelse($project->budgets as $budget)
-                    {{--<li><a href=""><i class="mdi mdi-file-pdf"></i> {!! $budget->model_file !!}</a></li>--}}
                     <tr>
                         <td>
-                            @if($budget->model_file == '')
-                                <i class="mdi mdi-file-pdf" title="No hay pdf para este presupuesto"></i>
-                            @else
+                            @if($budget->model_file)
                                 <a href="{{ route('projects.seepdf', $budget->model_file) }}" title="VER PDF" target="_blank">
                                     @if($budget->state->slug == 'pendiente')
                                         <i class="mdi mdi-file-pdf text-warning" title="PENDIENTE"></i>
@@ -33,10 +31,13 @@
                                     @endif
                                     {!! $budget->model_file !!}
                                 </a>
+                            @else
+                                {!! $budget->project->title.' (sin PDF)' !!}
                             @endif
                         </td>
                         <td>${!! $budget->fee !!}</td>
                         <td>{!! $budget->payment_method !!}</td>
+                        <td>{!! $budget->created_at_parse !!}</td>
                         <td>
 
                             {!! Form::open(['url' => route('projects.state.budget', $budget->id), 'method' => 'put']) !!}
@@ -98,8 +99,9 @@
 
         <div id="add-budget" style="display: none">
             <h4 class="card-title">Agregar presupuesto</h4>
-            {!! Form::open(['url' => route('projects.store.budget', $project->id), 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+            {!! Form::open(['url' => route('budgets.store'), 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
 
+            {!! Form::hidden('project_id', $project->id) !!}
             <div class="form-group">
                 {!! Form::label('fee', 'Importe') !!}
 

@@ -28,6 +28,7 @@ class CreateCustomersTable extends Migration
             $table->string('cuil')->nullable();
             $table->text('remarks')->nullable();
 
+            $table->softDeletes();
             $table->index('id');
 
             $table->timestamps();

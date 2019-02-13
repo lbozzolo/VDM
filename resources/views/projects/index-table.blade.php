@@ -10,12 +10,12 @@
                     <h2 class="display-4">Proyectos</h2>
                     <span style="float: right" title="Tabla"><i class="mdi mdi-table text-muted"></i></span>
                     <span style="float: right"><a href="{{ route('projects.index') }}"><i class="mdi mdi-view-list"></i> </a></span>
-                    <a href="{{ route('projects.create') }}" class="btn btn-success btn-sm" >Nuevo Proyecto<i class="mdi mdi-plus"></i></a>
+                    <a href="{{ route('projects.create') }}" class="btn btn-sm btn-outline-primary mt-3" >Agregar Proyecto<i class="mdi mdi-plus"></i></a>
 
                     <div class="card">
                         <div class="card-body">
 
-                            <h5 class="card-title mb-4">Administrar proyectos</h5>
+                            {{--<h5 class="card-title mb-4">Administrar proyectos</h5>--}}
                             <div class="table-responsive">
                                 <table class="table ">
                                     <thead>

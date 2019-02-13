@@ -3,11 +3,14 @@
 namespace Vdm\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Vdm\User;
 use Carbon\Carbon;
 
 class Project extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *
@@ -30,7 +33,7 @@ class Project extends Model
     public function feeApprovedBudget()
     {
         $approved = $this->budgets->filter(function ($item) {
-            return $item->state->slug == 'aprobado';
+            return ($item->state)? $item->state->slug == 'aprobado' : null;
         })->first();
 
         $response = ($approved)? $approved->fee : null;

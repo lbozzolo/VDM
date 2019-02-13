@@ -113,7 +113,7 @@ class CustomersController extends Controller
 
         $data['customer']->delete();
 
-        return redirect()->route('customers.index')->with('ok', 'Cliente editado con éxito');
+        return redirect()->route('customers.index')->with('ok', 'Cliente eliminado con éxito');
     }
 
 }

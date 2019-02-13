@@ -18,7 +18,7 @@ class CreateBudgetsTable extends Migration
 
             $table->string('fee');
             $table->string('payment_method');
-            $table->string('model_file');
+            $table->string('model_file')->nullable();
             $table->integer('project_id')->unsigned();
             $table->integer('state_id')->unsigned()->nullable();
 

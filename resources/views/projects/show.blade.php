@@ -27,7 +27,11 @@
                         </li>
                         <li>
                             <span class="font-weight-bold">Cliente:</span>
-                            {!! ($project->customer)? $project->customer->fullname : '<small class="text-muted">sin datos</small>' !!}
+                            @if($project->customer)
+                                <a href="{{ route('customers.show', $project->customer->id) }}">{!! $project->customer->fullname !!}</a>
+                            @else
+                                <small class="text-muted">sin datos</small>
+                            @endif
                         </li>
                         <li>
                             <span class="font-weight-bold">Fecha de creación:</span>
@@ -110,22 +114,25 @@
                             <h3 class="card-title">Presupuestos</h3>
                             <ul class="list-unstyled">
                                 @foreach($project->budgets as $budget)
-                                    @if($budget->model_file == '')
-                                        <li><i class="mdi mdi-file-pdf" title="No hay pdf para este presupuesto"></i></li>
-                                    @else
+
                                         <li>
-                                            <a href="{{ route('projects.seepdf', $budget->model_file) }}" title="VER PDF" target="_blank">
-                                                @if($budget->state->slug == 'pendiente')
-                                                    <i class="mdi mdi-file-pdf text-warning" title="PENDIENTE"></i>
-                                                @elseif($budget->state->slug == 'aprobado')
-                                                    <i class="mdi mdi-file-pdf text-success" title="APROBADO"></i>
-                                                @elseif($budget->state->slug == 'rechazado')
-                                                    <i class="mdi mdi-file-pdf text-danger" title="RECHAZADO"></i>
-                                                @endif
-                                                {!! $budget->model_file !!}
-                                            </a>
+                                            @if($budget->model_file)
+                                                <a href="{{ route('projects.seepdf', $budget->model_file) }}" title="VER PDF" target="_blank">
+                                                    @if($budget->state->slug == 'pendiente')
+                                                        <i class="mdi mdi-file-pdf text-warning" title="PENDIENTE"></i>
+                                                    @elseif($budget->state->slug == 'aprobado')
+                                                        <i class="mdi mdi-file-pdf text-success" title="APROBADO"></i>
+                                                    @elseif($budget->state->slug == 'rechazado')
+                                                        <i class="mdi mdi-file-pdf text-danger" title="RECHAZADO"></i>
+                                                    @endif
+                                                    {!! $budget->model_file !!}
+                                                </a>
+                                            @else
+                                                {!! $budget->project->title.' (sin PDF)' !!}
+                                            @endif
+                                            <span style="float:right">{!! $budget->created_at_parse !!}</span>
                                         </li>
-                                    @endif
+
                                 @endforeach
                             </ul>
                         </div>

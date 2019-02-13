@@ -12,6 +12,6 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'fee', 'ip', 'username', 'password', 'port', 'supplier_id'
+        'name', 'fee', 'ip', 'username', 'password', 'port', 'processor', 'ram', 'storage', 'connectivity', 'direct_admin', 'backbone_shared', 'so', 'additional_bandwidth', 'admin_access', 'storage_backup', 'type', 'supplier_id'
     ];
 }

@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'phases'], function () {
+Route::group(['prefix' => 'fases'], function () {
 
     Route::get('/listado', [
         'as' => 'phases.index',

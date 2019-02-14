@@ -14,4 +14,11 @@ class Product extends Model
     protected $fillable = [
         'name', 'fee', 'ip', 'username', 'password', 'port', 'processor', 'ram', 'storage', 'connectivity', 'direct_admin', 'backbone_shared', 'so', 'additional_bandwidth', 'admin_access', 'storage_backup', 'type', 'supplier_id'
     ];
+
+    // Relationships
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

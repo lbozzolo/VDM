@@ -14,4 +14,17 @@ class Supplier extends Model
     protected $fillable = [
         'name', 'email'
     ];
+
+    // Relationships
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
 }

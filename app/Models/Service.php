@@ -14,4 +14,11 @@ class Service extends Model
     protected $fillable = [
         'name', 'fee', 'supplier_id'
     ];
+
+    // Relationsips
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

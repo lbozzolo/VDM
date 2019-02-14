@@ -32,6 +32,16 @@ Route::group(['prefix' => 'contactos'], function () {
         'uses' => 'ContactsController@update',
     ]);
 
+    Route::put('/vincular', [
+        'as' => 'contacts.attach',
+        'uses' => 'ContactsController@attach',
+    ]);
+
+    Route::put('{id}/desvincular', [
+        'as' => 'contacts.detach',
+        'uses' => 'ContactsController@detach',
+    ]);
+
     Route::delete('/eliminar', [
         'as' => 'contacts.destroy',
         'uses' => 'ContactsController@destroy',

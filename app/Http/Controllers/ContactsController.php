@@ -4,6 +4,7 @@ namespace Vdm\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Vdm\Models\Contact;
+use Vdm\Models\Customer;
 use Vdm\Models\Project;
 
 class ContactsController extends Controller
@@ -30,8 +31,6 @@ class ContactsController extends Controller
 
     public function store(Request $request)
     {
-        $project = Project::find($request->project_id);
-
         $data['contact'] = Contact::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
@@ -44,7 +43,50 @@ class ContactsController extends Controller
         if(!$data['contact'])
             return redirect()->back()->withErrors('No se pudo crear el contacto.');
 
-        $project->contacts()->attach($data['contact']);
+        if($request->has('project_id')){
+            $project = Project::find($request->project_id);
+            $project->contacts()->attach($data['contact']);
+        }
+
+        if($request->has('customer_id')){
+            $customer = Customer::find($request->customer_id);
+            $customer->contacts()->attach($data['contact']);
+        }
+
+        return redirect()->back();
+    }
+
+    public function attach(Request $request)
+    {
+        if($request->has('customer_id')){
+            $customer = Customer::find($request->customer_id);
+            $customer->contacts()->attach($request->contact_id);
+        }
+
+        if($request->has('project_id')){
+            $project = Project::find($request->project_id);
+            $project->contacts()->attach($request->contact_id);
+        }
+
+        return redirect()->back();
+    }
+
+    public function detach(Request $request, $id)
+    {
+        $data['contact'] = Contact::find($id);
+
+        if(!$data['contact'])
+            return redirect()->back()->withErrors('No se pudo desvincular el contacto.');
+
+        if($request->has('customer_id')){
+            $customer = Customer::find($request->customer_id);
+            $customer->contacts()->detach($data['contact']);
+        }
+
+        if($request->has('project_id')){
+            $project = Project::find($request->project_id);
+            $project->contacts()->detach($data['contact']);
+        }
 
         return redirect()->back();
     }

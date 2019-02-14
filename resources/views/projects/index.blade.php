@@ -25,11 +25,11 @@
                                         @if($project->images->count())
                                             @foreach($project->images as $image)
                                                 @if($image->main == 1)
-                                                    <img class="img-lg rounded-circle mb-4 mb-md-0" style="border: 1px solid lightgrey" src="{{ route('images.see', $image->path) }}" >
+                                                    <img class="img-md rounded-circle mb-4 mb-md-0" style="border: 1px solid lightgrey" src="{{ route('images.see', $image->path) }}" >
                                                 @endif
                                             @endforeach
                                         @else
-                                            <img class="img-lg rounded-circle mb-4 mb-md-0" src="{{ asset('img/project-img-default.png') }}" alt="profile image">
+                                            <img class="img-md rounded-circle mb-4 mb-md-0" src="{{ asset('img/project-img-default.png') }}" alt="profile image">
                                         @endif
                                     </div>
                                     <div class="ticket-details col-md-9">

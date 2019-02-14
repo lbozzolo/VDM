@@ -30,13 +30,33 @@
             <div class="collapse" id="proyectos">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('projects.index') }}">Listado</a>
+                        <a class="nav-link" href="{{ route('projects.index') }}">Listado proyectos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ asset('staradmin/pages/ui-features/typography.html') }}">Vencimientos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('phases.index') }}">Fases</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#suppliers" aria-expanded="false" aria-controls="ui-basic">
+                <i class="menu-icon mdi mdi-cube-outline"></i>
+                <span class="menu-title">Proveedores</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="suppliers">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('suppliers.index') }}">Listado proveedores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('products.index') }}">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('services.index') }}">Servicios</a>
                     </li>
                 </ul>
             </div>

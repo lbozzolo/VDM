@@ -4,6 +4,7 @@ namespace Vdm\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Vdm\Models\Budget;
+use Vdm\Models\Contact;
 use Vdm\Models\Customer;
 use Vdm\Models\Phase;
 use Vdm\Models\Project;
@@ -97,6 +98,7 @@ class ProjectsController extends Controller
         $data['customers'] = Customer::all()->pluck('fullname_username', 'id');
         $data['phases'] = Phase::all()->pluck('name', 'id');
         $data['states'] = StateBudget::all()->pluck('name', 'id');
+        $data['contacts'] = Contact::all()->pluck('fullname', 'id');
 
         return view('projects.edit')->with($data);
     }

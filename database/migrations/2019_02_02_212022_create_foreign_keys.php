@@ -163,6 +163,18 @@ class CreateForeignKeys extends Migration
                 ->onUpdate('NO ACTION')
                 ->onDelete('NO ACTION');
         });
+        Schema::table('contacts_customers', function(Blueprint $table){
+            $table->foreign('contact_id')
+                ->references('id')
+                ->on('contacts')
+                ->onUpdate('NO ACTION')
+                ->onDelete('NO ACTION');
+            $table->foreign('customer_id')
+                ->references('id')
+                ->on('customers')
+                ->onUpdate('NO ACTION')
+                ->onDelete('NO ACTION');
+        });
     }
 
     /**

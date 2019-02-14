@@ -3,6 +3,7 @@
 namespace Vdm\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Vdm\Models\Contact;
 use Vdm\Models\Customer;
 use Vdm\Models\Phase;
 use Vdm\Models\Project;
@@ -66,6 +67,8 @@ class CustomersController extends Controller
 
         if(!$data['customer'])
             return redirect()->back()->withErrors('No se pudo encontrar el cliente');
+
+        $data['contacts'] = Contact::all()->pluck('fullname', 'id');
 
         return view('customers.show')->with($data);
     }

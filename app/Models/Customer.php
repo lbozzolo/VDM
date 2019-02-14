@@ -36,4 +36,9 @@ class Customer extends Model
         return $this->hasMany(Project::class);
     }
 
+    public function contacts()
+    {
+        return $this->belongsToMany(Contact::class, 'contacts_customers');
+    }
+
 }

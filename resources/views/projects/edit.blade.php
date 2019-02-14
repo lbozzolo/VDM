@@ -111,13 +111,17 @@
 
             $('#add-contact-button').click(function () {
                 $('#add-contact').show();
-                $('#contacts-list').hide()
+                $('#contacts-list').hide();
+                $('#existing-contacts').show();
+                $(this).hide();
             });
 
             $('#cancel-add-contact').click(function () {
 
                 $('#contacts-list').show();
                 $('#add-contact').hide();
+                $('#add-contact-button').show();
+                $('#existing-contacts').hide();
 
             });
 

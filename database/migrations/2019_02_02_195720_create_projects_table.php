@@ -24,12 +24,14 @@ class CreateProjectsTable extends Migration
             $table->text('remarks')->nullable();
             $table->integer('phase_id')->nullable()->unsigned();
             $table->integer('customer_id')->unsigned();
+            $table->integer('agent_id')->unsigned();
             $table->integer('owner_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
             $table->index('id');
             $table->index('phase_id');
             $table->index('customer_id');
+            $table->index('agent_id');
             $table->index('owner_id');
             $table->index('user_id');
 

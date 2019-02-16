@@ -24,6 +24,11 @@ class CreateForeignKeys extends Migration
                 ->on('customers')
                 ->onUpdate('NO ACTION')
                 ->onDelete('NO ACTION');
+            $table->foreign('agent_id')
+                ->references('id')
+                ->on('agents')
+                ->onUpdate('NO ACTION')
+                ->onDelete('NO ACTION');
             $table->foreign('owner_id')
                 ->references('id')
                 ->on('users')
@@ -46,6 +51,13 @@ class CreateForeignKeys extends Migration
             $table->foreign('project_id')
                 ->references('id')
                 ->on('projects')
+                ->onUpdate('NO ACTION')
+                ->onDelete('NO ACTION');
+        });
+        Schema::table('customers', function(Blueprint $table){
+            $table->foreign('agent_id')
+                ->references('id')
+                ->on('agents')
                 ->onUpdate('NO ACTION')
                 ->onDelete('NO ACTION');
         });

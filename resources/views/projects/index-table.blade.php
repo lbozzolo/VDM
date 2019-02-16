@@ -17,7 +17,7 @@
 
                             {{--<h5 class="card-title mb-4">Administrar proyectos</h5>--}}
                             <div class="table-responsive">
-                                <table class="table ">
+                                <table class="table table-condensed">
                                     <thead>
                                     <tr>
                                         <th></th>
@@ -46,9 +46,11 @@
                                             </td>
                                             <td>
                                                 <span>{!! $project->title !!}</span><br>
-                                                <small class="text-muted mt-2" style="display: inline-block">{!! $project->description !!}</small>
+                                                <p class="text-muted mt-2" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">
+                                                    {!! $project->description !!}
+                                                </p>
                                             </td>
-                                            <td>{!! $project->customer->fullname !!}</td>
+                                            <td>{!! $project->customer->fullname_username !!}</td>
                                             <td>
                                                 <span>{!! $project->deadline_date !!}</span><br>
                                                 <small class="text-muted mt-2" style="display: inline-block">{!! $project->period !!}</small>

@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
     require(__DIR__ . '/app/projects.php');
     require(__DIR__ . '/app/phases.php');
     require(__DIR__ . '/app/customers.php');
+    require(__DIR__ . '/app/agents.php');
     require(__DIR__ . '/app/images.php');
     require(__DIR__ . '/app/expirations.php');
     require(__DIR__ . '/app/contacts.php');

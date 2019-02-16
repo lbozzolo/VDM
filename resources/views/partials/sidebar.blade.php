@@ -74,6 +74,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{ route('agents.index') }}">
+                <i class="menu-icon mdi mdi-clipboard-account"></i>
+                <span class="menu-title">Intermediarios</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="index.html">
                 <i class="menu-icon mdi mdi-developer-board"></i>
                 <span class="menu-title">Desarrolladores</span>
@@ -113,18 +119,6 @@
                     </li>
                 </ul>
             </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('suppliers.index') }}">
-                <i class="menu-icon mdi mdi-cube-outline"></i>
-                <span class="menu-title">Proveedores</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('products.index') }}">
-                <i class="menu-icon mdi mdi-professional-hexagon"></i>
-                <span class="menu-title">Productos</span>
-            </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="index.html">

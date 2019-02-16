@@ -3,6 +3,7 @@
 namespace Vdm\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Vdm\Models\Agent;
 use Vdm\Models\Budget;
 use Vdm\Models\Contact;
 use Vdm\Models\Customer;
@@ -53,6 +54,7 @@ class ProjectsController extends Controller
     {
         $data['users'] = User::all()->pluck('full_name', 'id');
         $data['customers'] = Customer::all()->pluck('fullname_username', 'id');
+        $data['agents'] = Agent::all()->pluck('fullname_username', 'id');
         $data['phases'] = Phase::all()->pluck('name', 'id');
 
 
@@ -73,6 +75,7 @@ class ProjectsController extends Controller
             'owner_id' => $request->owner_id,
             'user_id' => Auth::user()->id,
             'customer_id' => $request->customer_id,
+            'agent_id' => $request->agent_id,
             'period' => $request->period,
             'phase_id' => ($request->phase_id)? $request->phase_id : 1,
             'deadline' => (isset($deadline))? $deadline : null,
@@ -96,6 +99,7 @@ class ProjectsController extends Controller
         $data['project'] = Project::find($id);
         $data['users'] = User::all()->pluck('full_name', 'id');
         $data['customers'] = Customer::all()->pluck('fullname_username', 'id');
+        $data['agents'] = Agent::all()->pluck('fullname_username', 'id');
         $data['phases'] = Phase::all()->pluck('name', 'id');
         $data['states'] = StateBudget::all()->pluck('name', 'id');
         $data['contacts'] = Contact::all()->pluck('fullname', 'id');
@@ -118,6 +122,7 @@ class ProjectsController extends Controller
         $project->owner_id = $request->owner_id;
         $project->user_id = Auth::user()->id;
         $project->customer_id = $request->customer_id;
+        $project->agent_id = $request->agent_id;
         $project->period = $request->period;
         $project->phase_id = $request->phase_id;
         $project->deadline = (isset($deadline))? $deadline : null;

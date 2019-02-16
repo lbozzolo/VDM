@@ -42,7 +42,7 @@
                                     <tr>
                                         <td><a href="{{ route('products.show', $product->id) }}">{!! $product->name !!}</a></td>
                                         <td>{!! config('system.servers.type.'.$product->type) !!}</td>
-                                        <td>{!! ($product->fee)? '$'.$product->fee : '-' !!}</td>
+                                        <td>{!! ($product->fee)? '$ '.$product->fee : '-' !!}</td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -62,13 +62,30 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Servicios</h3>
-                    <ul class="list-unstyled">
-                        @forelse($supplier->services as $service)
-                            <li>{!! $service->name !!}</li>
-                        @empty
-                            <li><small class="text-muted">No hay ningún servicio cargado en este proveedor</small> </li>
-                        @endforelse
-                    </ul>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Importe</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse($supplier->services as $service)
+                                <tr>
+                                    <td><a href="{{ route('services.show', $service->id) }}">{!! $service->name !!}</a></td>
+                                    <td>{!! ($service->fee)? '$ '.$service->fee : '-' !!}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="text-muted">No hay servicios cargados en este proveedor</td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
         </div>

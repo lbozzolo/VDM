@@ -52,9 +52,15 @@
                                     {!! Form::text('deadline', null, ['class' => 'form-control datepicker', 'style' => 'cursor: default', 'autocomplete' => 'off']) !!}
                                 </div>
                             </div>
-                            <div class="form-group col-lg-6">
-                                {!! Form::label('remarks', 'Observaciones') !!}
-                                {!! Form::textarea('remarks', null, ['class' => 'form-control', 'rows' => '12']) !!}
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="exampleInputName1">Intermediario</label><br>
+                                    {!! Form::select('agent_id', $agents, null, ['class' => 'selectize']) !!}
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::label('remarks', 'Observaciones') !!}
+                                    {!! Form::textarea('remarks', null, ['class' => 'form-control', 'rows' => '6']) !!}
+                                </div>
                             </div>
                         </div>
 

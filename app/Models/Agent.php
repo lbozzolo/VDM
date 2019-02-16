@@ -5,17 +5,15 @@ namespace Vdm\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Customer extends Model
+class Agent extends Model
 {
-    use SoftDeletes;
-    protected $dates = ['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'username', 'head', 'email', 'url', 'address', 'phone', 'cuit', 'cuil', 'remarks', 'agent_id'
+        'name', 'last_name', 'username', 'head', 'email', 'url', 'address', 'phone', 'cuit', 'cuil', 'remarks'
     ];
 
     public function getFullnameAttribute()
@@ -45,14 +43,9 @@ class Customer extends Model
         return $this->hasMany(Project::class);
     }
 
-    public function contacts()
+    public function customers()
     {
-        return $this->belongsToMany(Contact::class, 'contacts_customers');
-    }
-
-    public function agent()
-    {
-        return $this->belongsTo(Agent::class);
+        return $this->hasMany(Customer::class);
     }
 
 }

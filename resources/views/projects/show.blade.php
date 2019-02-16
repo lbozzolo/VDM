@@ -16,7 +16,7 @@
 
                     <span class="text-muted">{!! $project->description !!}</span>
                     <h4 class="card-title mt-1">
-                        <span class="text-primary">{!! ($project->feeApprovedBudget())? '$'.$project->feeApprovedBudget() : '<small class="text-muted">sin datos</small>' !!}</span>
+                        <span class="text-primary">{!! ($project->feeApprovedBudget())? '$'.$project->feeApprovedBudget() : '' !!}</span>
                     </h4>
                     <label class="label badge fase fase-{!! str_slug($project->phase->name, '-') !!} mr-3">{!! $project->phase->name !!}</label>
 
@@ -28,7 +28,15 @@
                         <li>
                             <span class="font-weight-bold">Cliente:</span>
                             @if($project->customer)
-                                <a href="{{ route('customers.show', $project->customer->id) }}">{!! $project->customer->fullname !!}</a>
+                                <a href="{{ route('customers.show', $project->customer->id) }}">{!! ($project->customer->fullname_username)? $project->customer->fullname_username : '<small class="text-muted">sin datos</small>' !!}</a>
+                            @else
+                                <small class="text-muted">sin datos</small>
+                            @endif
+                        </li>
+                        <li>
+                            <span class="font-weight-bold">Intermediario:</span>
+                            @if($project->agent)
+                                <a href="{{ route('agents.show', $project->agent->id) }}">{!! ($project->agent->fullname_username)? $project->agent->fullname_username : '<small class="text-muted">sin datos</small>' !!}</a>
                             @else
                                 <small class="text-muted">sin datos</small>
                             @endif

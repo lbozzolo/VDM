@@ -52,11 +52,20 @@ class CustomersController extends Controller
             'phone' => $request->phone,
             'cuit' => $request->cuit,
             'cuil' => $request->cuil,
-            'remarks' => $request->remarks
+            'remarks' => $request->remarks,
+            'agent_id' => $request->agent_id
         ]);
 
         if(!$data['customer'])
             return redirect()->back()->withErrors('No se pudo crear el cliente.');
+
+        Contact::create([
+            'name' => $data['customer']->name,
+            'last_name' => $data['customer']->last_name,
+            'email' => $data['customer']->email,
+            'address' => $data['customer']->address,
+            'phone' => $data['customer']->phone
+        ]);
 
         return redirect()->route('customers.show', $data['customer']->id)->with('ok', 'Cliente creado con éxito');
     }
@@ -64,11 +73,14 @@ class CustomersController extends Controller
     public function show($id)
     {
         $data['customer'] = Customer::find($id);
+        $customer = $data['customer'];
 
         if(!$data['customer'])
             return redirect()->back()->withErrors('No se pudo encontrar el cliente');
 
-        $data['contacts'] = Contact::all()->pluck('fullname', 'id');
+        $data['contacts'] = Contact::all()->filter(function ($contact) use ($customer) {
+            return $contact->email != $customer->email;
+        })->pluck('fullname', 'id');
 
         return view('customers.show')->with($data);
     }
@@ -101,6 +113,7 @@ class CustomersController extends Controller
         $data['customer']->cuit = $request->cuit;
         $data['customer']->cuil = $request->cuil;
         $data['customer']->remarks = $request->remarks;
+        $data['customer']->agent_id = $request->agent_id;
 
         $data['customer']->save();
 

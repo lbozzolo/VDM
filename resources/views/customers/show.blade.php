@@ -8,8 +8,10 @@
 
             <div class="card">
                 <div class="card-body">
-
-                    <h2 class="display-4">{!! $customer->fullname !!}</h2>
+                    <a href="{{ route('customers.edit', $customer->id) }}" title="Editar Cliente" class="btn btn-outline-primary btn-xs" style="float:right">
+                        <i class="mdi mdi-rename-box"></i>
+                    </a>
+                    <h2 class="display-4">{!! $customer->fullname_username !!}</h2>
                     <h4 class="card-title">Descripción del cliente</h4>
 
                     <ul class="list-arrow">
@@ -26,8 +28,20 @@
                             {!! ($customer->email)? $customer->email : '<small class="text-muted">sin datos</small>' !!}
                         </li>
                         <li>
+                            <span class="font-weight-bold">Intermediario:</span>
+                            @if($customer->agent)
+                                <a href="{{ route('agents.show', $customer->agent->id) }}">{!! ($customer->agent->fullname_username)? $customer->agent->fullname_username : '<small class="text-muted">sin datos</small>' !!}</a>
+                            @else
+                                <small class="text-muted">sin datos</small>
+                            @endif
+                        </li>
+                        <li>
                             <span class="font-weight-bold">URL:</span>
-                            {!! ($customer->url)? $customer->url : '<small class="text-muted">sin datos</small>' !!}
+                            @if($customer->url)
+                                <a href="{!! $customer->url !!}" target="_blank">{!! $customer->url !!}</a>
+                            @else
+                                <small class="text-muted">sin datos</small>
+                            @endif
                         </li>
                         <li>
                             <span class="font-weight-bold">Teléfono:</span>
@@ -146,7 +160,7 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title">Proyectos de {!! $customer->fullname !!}</h3>
+                    <h3 class="card-title">Proyectos de {!! $customer->fullname_username !!}</h3>
 
                     <div class="fluid-container" style="margin-top: 30px">
 

@@ -22,7 +22,7 @@ class Project extends Model
 
     public function getDeadlineDateAttribute()
     {
-        return Carbon::parse($this->deadline)->format('d/m/Y');
+        return ($this->deadline)? Carbon::parse($this->deadline)->format('d/m/Y') : null;
     }
 
     public function getCreatedDateAttribute()
@@ -59,6 +59,11 @@ class Project extends Model
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function agent()
+    {
+        return $this->belongsTo(Agent::class);
     }
 
     public function phase()

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomersTable extends Migration
+class CreateAgentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCustomersTable extends Migration
      */
     public function up()
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('agents', function (Blueprint $table) {
             $table->increments('id');
 
             $table->string('name')->nullable();
@@ -27,11 +27,9 @@ class CreateCustomersTable extends Migration
             $table->string('cuit')->nullable();
             $table->string('cuil')->nullable();
             $table->text('remarks')->nullable();
-            $table->integer('agent_id')->unsigned()->nullable();
 
             $table->softDeletes();
             $table->index('id');
-            $table->index('agent_id');
 
             $table->timestamps();
         });
@@ -45,7 +43,7 @@ class CreateCustomersTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('agents');
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
 }
